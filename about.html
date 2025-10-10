@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Fashion Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Fashion Store</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div id="promoBanner" style="display: none;"></div>
+
+    <section class="content-page">
+        <div class="container">
+            <h1 class="page-title">About Fashion Store</h1>
+            
+            <div class="content-section">
+                <h2>Our Story</h2>
+                <p>Welcome to Fashion Store, where style meets sophistication. Since our inception, we've been dedicated to bringing you the finest collection of contemporary clothing that celebrates individuality and elegance.</p>
+                
+                <h2>Our Mission</h2>
+                <p>We believe that fashion is more than just clothing—it's a form of self-expression. Our mission is to provide high-quality, stylish pieces that empower you to feel confident and comfortable in your own skin.</p>
+                
+                <h2>Quality & Craftsmanship</h2>
+                <p>Every piece in our collection is carefully curated with attention to detail, premium fabrics, and timeless designs. We work with skilled artisans and ethical manufacturers to ensure that each garment meets our high standards.</p>
+                
+                <h2>Sustainability</h2>
+                <p>We're committed to responsible fashion. Our sustainable practices include using eco-friendly materials, reducing waste, and ensuring fair labor practices throughout our supply chain.</p>
+                
+                <h2>Customer First</h2>
+                <p>Your satisfaction is our priority. We offer exceptional customer service, easy returns, and a seamless shopping experience from browsing to delivery.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Fashion Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="discountPopup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <div id="popupBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

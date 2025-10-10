@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Fashion Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Admin Dashboard</div>
+            <button onclick="logout()" class="btn btn-small">Logout</button>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-tabs">
+            <button class="tab-btn active" onclick="showTab('products')">Manage Products</button>
+            <button class="tab-btn" onclick="showTab('popup')">Discount Popup</button>
+            <button class="tab-btn" onclick="showTab('banner')">Banner Ad</button>
+        </div>
+
+        <div id="productsTab" class="tab-content active">
+            <h2>Add New Product</h2>
+            <form id="addProductForm" class="admin-form">
+                <input type="hidden" id="editProductId">
+                <div class="form-group">
+                    <label for="productTitle">Product Title</label>
+                    <input type="text" id="productTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">Description</label>
+                    <textarea id="productDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="productImage">Image URL</label>
+                    <input type="url" id="productImage" placeholder="https://example.com/image.jpg" required>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Price ($)</label>
+                    <input type="number" id="productPrice" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="productCategory">Category</label>
+                    <input type="text" id="productCategory" placeholder="e.g., Men, Women, Accessories" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="submitBtn">Add Product</button>
+                <button type="button" class="btn btn-secondary" id="cancelBtn" onclick="cancelEdit()" style="display: none;">Cancel</button>
+            </form>
+
+            <div class="success-message" id="productSuccess" style="display: none;">
+                Product added successfully!
+            </div>
+
+            <div style="margin-top: 50px;">
+                <h2>Current Products</h2>
+                <div id="productsList" class="products-list"></div>
+            </div>
+        </div>
+
+        <div id="popupTab" class="tab-content">
+            <h2>Create Discount Popup</h2>
+            <form id="popupForm" class="admin-form">
+                <div class="form-group">
+                    <label for="popupBgImage">Background Image URL</label>
+                    <input type="url" id="popupBgImage" placeholder="https://example.com/banner.jpg" required>
+                </div>
+                <div class="form-group">
+                    <label for="popupText">Promotional Text</label>
+                    <textarea id="popupText" rows="3" placeholder="Get 50% OFF on all items! Limited time offer!" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="popupDisplay">Display On</label>
+                    <select id="popupDisplay" required>
+                        <option value="all">All Pages</option>
+                        <option value="home">Homepage Only</option>
+                        <option value="products">Products Page Only</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="popupActive"> Activate Popup
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Popup</button>
+                <button type="button" onclick="clearPopup()" class="btn btn-secondary">Clear Popup</button>
+            </form>
+
+            <div class="success-message" id="popupSuccess" style="display: none;">
+                Popup settings saved successfully!
+            </div>
+        </div>
+
+        <div id="bannerTab" class="tab-content">
+            <h2>Create Banner Ad (Under Navbar)</h2>
+            <form id="bannerForm" class="admin-form">
+                <div class="form-group">
+                    <label for="bannerText">Banner Text</label>
+                    <input type="text" id="bannerText" placeholder="🔥 Summer Sale - Up to 70% OFF!" required>
+                </div>
+                <div class="form-group">
+                    <label for="bannerLink">Link URL (Optional)</label>
+                    <input type="url" id="bannerLink" placeholder="https://example.com/sale">
+                </div>
+                <div class="form-group">
+                    <label for="bannerBgColor">Background Color</label>
+                    <select id="bannerBgColor" required>
+                        <option value="black">Black</option>
+                        <option value="gradient-purple">Purple Gradient</option>
+                        <option value="gradient-blue">Blue Gradient</option>
+                        <option value="gradient-red">Red Gradient</option>
+                        <option value="gradient-green">Green Gradient</option>
+                        <option value="gradient-orange">Rainbow Gradient</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bannerAnimation">Animation Style</label>
+                    <select id="bannerAnimation" required>
+                        <option value="slide">Slide Down</option>
+                        <option value="fade">Fade In</option>
+                        <option value="bounce">Bounce In</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="bannerActive"> Activate Banner
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Banner</button>
+                <button type="button" onclick="clearBanner()" class="btn btn-secondary">Clear Banner</button>
+            </form>
+
+            <div class="success-message" id="bannerSuccess" style="display: none;">
+                Banner settings saved successfully!
+            </div>
+
+            <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 10px;">
+                <h3 style="margin-bottom: 10px;">Preview:</h3>
+                <div id="bannerPreview" style="text-align: center; padding: 12px; border-radius: 8px; font-weight: 600; color: #fff; background: #000;">
+                    Your banner will appear here
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
