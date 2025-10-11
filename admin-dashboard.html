@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Fashion Store</title>
+    <title>Admin Dashboard - RIAS Shwal</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -35,11 +35,15 @@
                     <textarea id="productDescription" rows="3" required></textarea>
                 </div>
                 <div class="form-group">
+                    <label for="productSpecifications">Detailed Specifications</label>
+                    <textarea id="productSpecifications" rows="3" placeholder="e.g., Material: Cotton. Sizes: S, M, L. Color: Blue." required></textarea>
+                </div>
+                <div class="form-group">
                     <label for="productImage">Image URL</label>
                     <input type="url" id="productImage" placeholder="https://example.com/image.jpg" required>
                 </div>
                 <div class="form-group">
-                    <label for="productPrice">Price ($)</label>
+                    <label for="productPrice">Price (USD - will be converted to PKR)</label>
                     <input type="number" id="productPrice" step="0.01" min="0" required>
                 </div>
                 <div class="form-group">

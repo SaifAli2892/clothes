@@ -1,3 +1,6 @@
+// USD to PKR conversion rate
+const USD_TO_PKR_RATE = 278;
+
 function checkAuth() {
     const isLoggedIn = localStorage.getItem('isAdminLoggedIn');
     if (!isLoggedIn || isLoggedIn !== 'true') {
@@ -26,11 +29,17 @@ function showTab(tabName) {
     event.target.classList.add('active');
 }
 
+function formatPricePKR(usdPrice) {
+    const pkrPrice = usdPrice * USD_TO_PKR_RATE;
+    return `Rs ${Math.round(pkrPrice).toLocaleString('en-PK')}`;
+}
+
 function addProduct(e) {
     e.preventDefault();
     
     const title = document.getElementById('productTitle').value;
     const description = document.getElementById('productDescription').value;
+    const specifications = document.getElementById('productSpecifications').value;
     const image = document.getElementById('productImage').value;
     const price = parseFloat(document.getElementById('productPrice').value);
     const category = document.getElementById('productCategory').value;
@@ -45,6 +54,7 @@ function addProduct(e) {
                 id: parseInt(editId),
                 title,
                 description,
+                specifications,
                 image,
                 price,
                 category
@@ -55,6 +65,7 @@ function addProduct(e) {
             id: Date.now(),
             title,
             description,
+            specifications,
             image,
             price,
             category
@@ -97,7 +108,7 @@ function displayProducts() {
             <img src="${product.image}" alt="${product.title}" class="admin-product-image" onerror="this.src='https://via.placeholder.com/600x800?text=No+Image'">
             <div class="admin-product-category">${product.category}</div>
             <div class="admin-product-title">${product.title}</div>
-            <div class="admin-product-price">$${parseFloat(product.price).toFixed(2)}</div>
+            <div class="admin-product-price">${formatPricePKR(product.price)}</div>
             <div class="admin-product-actions">
                 <button class="edit-btn" onclick="editProduct(${product.id})">Edit</button>
                 <button class="delete-btn" onclick="deleteProduct(${product.id})">Delete</button>
@@ -114,6 +125,7 @@ function editProduct(id) {
         document.getElementById('editProductId').value = product.id;
         document.getElementById('productTitle').value = product.title;
         document.getElementById('productDescription').value = product.description;
+        document.getElementById('productSpecifications').value = product.specifications || '';
         document.getElementById('productImage').value = product.image;
         document.getElementById('productPrice').value = product.price;
         document.getElementById('productCategory').value = product.category;
